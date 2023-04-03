@@ -163,7 +163,7 @@ export class Context {
     onTouchEnd(event) {
         event.stopPropagation();
         var now = new Date().getTime();
-        if (now - lastTouchTime <= 300) {
+        if (now - lastTouchTime <= 500) {
             var nowTarget = document.getElementsByClassName("target")[this.targetNumber];
             nowTarget.style.backgroundColor = 'green'
             this.followMode = true;
