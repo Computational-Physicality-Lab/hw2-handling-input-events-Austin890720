@@ -25,6 +25,10 @@ for(let i=0;i<targets.length;i++){
     targets[i].addEventListener('click', Target.onClick.bind(Target,i));
     targets[i].addEventListener('mousemove', Target.onMouseMove.bind(Target));
     targets[i].addEventListener('dblclick', Target.onDoubleClick.bind(Target, i));
+    targets[i].addEventListener("touchstart", Target.onMouseDown.bind(Target,i));
+    targets[i].addEventListener("touchmove", Target.onMouseMove.bind(Target));
+    targets[i].addEventListener("touchend", Target.onMouseUp.bind(Target));
+
 }
 document.addEventListener("keydown", Target.onESC.bind(Target));
 
