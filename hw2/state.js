@@ -162,21 +162,13 @@ export class Context {
     }
     onTouchEnd(event) {
         event.stopPropagation();
-        // var now = new Date().getTime();
-        // if (now - lastTouchTime <= 500) {
-        //     var nowTarget = document.getElementsByClassName("target")[this.targetNumber];
-        //     nowTarget.style.backgroundColor = 'green'
-        //     this.followMode = true;
-        // }
-        // this.lastTouchTime = now;
-        console.log("mouse up")
-        var nowTarget = document.getElementsByClassName("target")[this.targetNumber];
-        if (this.isDown) {
-            this.initX[this.targetNumber] = nowTarget.style.left;
-            this.initY[this.targetNumber] = nowTarget.style.top;
+        var now = new Date().getTime();
+        if (now - lastTouchTime <= 500) {
+            var nowTarget = document.getElementsByClassName("target")[this.targetNumber];
+            nowTarget.style.backgroundColor = 'green'
+            this.followMode = true;
         }
-        this.isDown = false;
-        this.isMoving = false;
+        this.lastTouchTime = now;
         nowTarget.removeEventListener('mousemove', this.onTouchMove);
     }
     onTouchMove(event) {
