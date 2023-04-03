@@ -86,7 +86,7 @@ export class Context {
         event.stopPropagation();
         console.log("outside");
         var nowTarget = document.getElementsByClassName("target")[this.targetNumber];
-        if(this.state != "idle" & this.followMode == false){
+        if(this.state != "idle" ){
             console.log("cancel" , this.state);
             let targets = document.querySelectorAll('.target');
             for (let r = 0; r < targets.length; r++) {
@@ -113,7 +113,7 @@ export class Context {
 
         }
     }
-    onMouseDownOutside(event){
+    onTouchStartOutside(event){
         event.stopPropagation();
         if (this.followMode == true){
             var nowTarget = document.getElementsByClassName("target")[this.targetNumber];
@@ -162,13 +162,13 @@ export class Context {
     }
     onTouchEnd(event) {
         event.stopPropagation();
-        var now = new Date().getTime();
-        if (now - lastTouchTime <= 500) {
-            var nowTarget = document.getElementsByClassName("target")[this.targetNumber];
-            nowTarget.style.backgroundColor = 'green'
-            this.followMode = true;
-        }
-        this.lastTouchTime = now;
+        // var now = new Date().getTime();
+        // if (now - lastTouchTime <= 500) {
+        //     var nowTarget = document.getElementsByClassName("target")[this.targetNumber];
+        //     nowTarget.style.backgroundColor = 'green'
+        //     this.followMode = true;
+        // }
+        // this.lastTouchTime = now;
         console.log("mouse up")
         var nowTarget = document.getElementsByClassName("target")[this.targetNumber];
         if (this.isDown) {

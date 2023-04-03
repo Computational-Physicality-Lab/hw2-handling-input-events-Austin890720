@@ -16,7 +16,7 @@ const Target = new Context();
 const workspace = document.querySelector('#workspace');
 workspace.addEventListener('click', Target.onClickOutside.bind(Target));
 
-workspace.addEventListener('touchstart', Target.onMouseDownOutside.bind(Target));
+workspace.addEventListener('touchstart', Target.onTouchStartOutside.bind(Target));
 workspace.addEventListener('touchmove', Target.onDragOutside.bind(Target));
 workspace.addEventListener('touchend', Target.onTouchEnd.bind(Target));
 
