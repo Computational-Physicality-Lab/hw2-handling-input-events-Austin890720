@@ -27,7 +27,7 @@ for(let i=0;i<targets.length;i++){
     targets[i].addEventListener('mousemove', Target.onMouseMove.bind(Target));
     targets[i].addEventListener('dblclick', Target.onDoubleClick.bind(Target, i));
 
-    // targets[i].addEventListener("touchstart", Target.onTouchStart.bind(Target,i));
+    targets[i].addEventListener("touchstart", Target.onTouchStart.bind(Target,i));
     targets[i].addEventListener("touchmove", Target.onTouchMove.bind(Target));
     targets[i].addEventListener("touchend", Target.onTouchEnd.bind(Target));
 
