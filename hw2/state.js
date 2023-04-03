@@ -162,11 +162,13 @@ export class Context {
     }
     onTouchEnd(event) {
         event.stopPropagation();
-        // var now = new Date().getTime();
-        // if (now - lastTouchTime <= 300) {
-        //     this.followMode = true;
-        // }
-        // this.lastTouchTime = now;
+        var now = new Date().getTime();
+        if (now - lastTouchTime <= 300) {
+            var nowTarget = document.getElementsByClassName("target")[this.targetNumber];
+            nowTarget.style.backgroundColor = 'green'
+            this.followMode = true;
+        }
+        this.lastTouchTime = now;
         console.log("mouse up")
         var nowTarget = document.getElementsByClassName("target")[this.targetNumber];
         if (this.isDown) {
