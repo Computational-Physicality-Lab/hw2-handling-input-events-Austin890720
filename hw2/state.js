@@ -169,6 +169,13 @@ export class Context {
         //     this.followMode = true;
         // }
         // this.lastTouchTime = now;
+        var nowTarget = document.getElementsByClassName("target")[this.targetNumber];
+        if (this.isDown) {
+            this.initX[this.targetNumber] = nowTarget.style.left;
+            this.initY[this.targetNumber] = nowTarget.style.top;
+        }
+        this.isDown = false;
+        this.isMoving = false;
         nowTarget.removeEventListener('mousemove', this.onTouchMove);
     }
     onTouchMove(event) {
