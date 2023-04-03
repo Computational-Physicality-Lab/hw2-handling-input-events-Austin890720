@@ -146,4 +146,49 @@ export class Context {
             
         }
     }
+    onTouchStart(i,event) {
+        event.stopPropagation();
+        this.targetNumber = i;
+        var nowTarget = document.getElementsByClassName("target")[this.targetNumber];
+        this.isDown = true;
+        this.startX[i] = event.pageX;
+        this.startY[i] = event.pageY;
+        this.initX[i] = nowTarget.style.left;
+        this.initY[i] = nowTarget.style.top;
+        this.offsetX[i] = parseInt(nowTarget.style.left);
+        this.offsetY[i] = parseInt(nowTarget.style.top);
+        nowTarget.addEventListener('mousemove', this.onMouseMove);
+    }
+    onTouchEnd(event) {
+        event.stopPropagation();
+        console.log("mouse up")
+        var nowTarget = document.getElementsByClassName("target")[this.targetNumber];
+        if (this.isDown) {
+            this.initX[this.targetNumber] = nowTarget.style.left;
+            this.initY[this.targetNumber] = nowTarget.style.top;
+        }
+        this.isDown = false;
+        this.isMoving = false;
+        nowTarget.removeEventListener('mousemove', this.onMouseMove);
+    }
+    onTouchMove(event) {
+        event.stopPropagation();
+        this.move = true;
+        var nowTarget = document.getElementsByClassName("target")[this.targetNumber];
+        if (this.isDown) {
+            const dx = event.pageX - this.startX[this.targetNumber];
+            const dy = event.pageY - this.startY[this.targetNumber];
+            nowTarget.style.top =  this.offsetY[this.targetNumber]+dy + "px";
+            nowTarget.style.left =  this.offsetX[this.targetNumber]+dx + "px";
+            // nowTarget.style.transform = `translate(${this.offsetX[this.targetNumber] + dx}px,${this.offsetY[this.targetNumber] + dy}px)`;
+            
+        }else if (this.isMoving == true & this.followMode == true){
+            console.log(nowTarget.style.left,nowTarget.style.top);
+            var nowTarget = document.getElementsByClassName("target")[this.targetNumber];
+            nowTarget.style.left = (event.clientX - nowTarget.offsetWidth/2) + 'px';
+            nowTarget.style.top = (event.clientY - nowTarget.offsetHeight/2) + 'px';
+        }else{
+            this.move = false;
+        }
+    }
 }

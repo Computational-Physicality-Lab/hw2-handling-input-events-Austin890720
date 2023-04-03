@@ -15,9 +15,10 @@ const Target = new Context();
 
 const workspace = document.querySelector('#workspace');
 workspace.addEventListener('click', Target.onClickOutside.bind(Target));
-// workspace.addEventListener('mousedown', Target.onMouseDownOutside.bind(Target));
-// workspace.addEventListener('mousemove', Target.onDragOutside.bind(Target));
-// workspace.addEventListener('mouseup', Target.onMouseUp.bind(Target));
+
+workspace.addEventListener('touchstart', Target.onMouseDownOutside.bind(Target));
+workspace.addEventListener('touchmove', Target.onDragOutside.bind(Target));
+workspace.addEventListener('touchend', Target.onMouseUp.bind(Target));
 
 for(let i=0;i<targets.length;i++){
     targets[i].addEventListener('mousedown', Target.onMouseDown.bind(Target, i));
@@ -25,9 +26,10 @@ for(let i=0;i<targets.length;i++){
     targets[i].addEventListener('click', Target.onClick.bind(Target,i));
     targets[i].addEventListener('mousemove', Target.onMouseMove.bind(Target));
     targets[i].addEventListener('dblclick', Target.onDoubleClick.bind(Target, i));
-    targets[i].addEventListener("touchstart", Target.onMouseDown.bind(Target,i));
-    targets[i].addEventListener("touchmove", Target.onMouseMove.bind(Target));
-    targets[i].addEventListener("touchend", Target.onMouseUp.bind(Target));
+
+    targets[i].addEventListener("touchstart", Target.onTouchStart.bind(Target,i));
+    targets[i].addEventListener("touchmove", Target.onTouchMove.bind(Target));
+    targets[i].addEventListener("touchend", Target.onTouchEnd.bind(Target));
 
 }
 document.addEventListener("keydown", Target.onESC.bind(Target));
