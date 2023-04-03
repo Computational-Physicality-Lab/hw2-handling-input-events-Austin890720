@@ -1,3 +1,5 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-8d59dc4de5201274e310e4c54b9627a8934c3b88527886e3b421487c677d23eb.svg)](https://classroom.github.com/a/vtMjwcap)
-# hw2-handling-input-events
-This is the starter code of [2023-Programming User Interface Homework](https://hackmd.io/@akairisu/HkUibgmx3)
+# hw1-Html-CSS-and-JavaScript
+- 蔡智冠 R11922198
+- 我大致上都按照影片的功能。
+- 加分作業的項目我沒有實做到。
+- 我的shopping cart有上網去查hover方法讓他狂抖。
