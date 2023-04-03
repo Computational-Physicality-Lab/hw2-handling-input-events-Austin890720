@@ -158,7 +158,7 @@ export class Context {
         this.initY[i] = nowTarget.style.top;
         this.offsetX[i] = parseInt(nowTarget.style.left);
         this.offsetY[i] = parseInt(nowTarget.style.top);
-        nowTarget.addEventListener('mousemove', this.onMouseMove);
+        nowTarget.addEventListener('mousemove', this.onTouchMove);
     }
     onTouchEnd(event) {
         event.stopPropagation();
@@ -177,7 +177,7 @@ export class Context {
         }
         this.isDown = false;
         this.isMoving = false;
-        nowTarget.removeEventListener('mousemove', this.onMouseMove);
+        nowTarget.removeEventListener('mousemove', this.onTouchMove);
     }
     onTouchMove(event) {
         event.stopPropagation();
