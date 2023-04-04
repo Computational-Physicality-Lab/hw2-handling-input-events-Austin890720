@@ -62,7 +62,7 @@ export class Context {
             this.initX[this.targetNumber] = nowTarget.style.left;
             this.initY[this.targetNumber] = nowTarget.style.top;
         }
-        console.log("mouse up", this.isDown,nowTarget.style.left,nowTarget.style.top);
+        // console.log("mouse up", this.isDown,nowTarget.style.left,nowTarget.style.top);
         this.isDown = false;
         this.isMoving = false;
         nowTarget.removeEventListener('mousemove', this.onMouseMove);
@@ -205,10 +205,6 @@ export class Context {
     // }
 }
 export class Touch{
-    static idelState = "idle";
-    static mouseDownState = "down";
-    static moviingState = "drag";
-    static doubleClickState = "double";
     targetNumber;
 
     constructor() {
@@ -275,8 +271,9 @@ export class Touch{
     }
     onTouchStartOutside(event){
         event.stopPropagation();
-        console.log("click outside start");
+        
         if (this.followMode == true){
+            console.log("click outside start");
             var nowTarget = document.getElementsByClassName("target")[this.targetNumber];
             this.isMoving = true;
             nowTarget.style.left = (event.clientX - nowTarget.offsetWidth/2) + 'px';
