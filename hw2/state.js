@@ -25,7 +25,7 @@ export class Context {
         console.log('click',this.state,this.move);
         this.state = 'click';
         let targets = document.querySelectorAll('.target');
-        if (this.state == 'click' & this.move == false){
+        if (this.state == 'click' & this.move == false  & this.touchMode == false){
             this.targetNumber = i;
             for (let r = 0; r < targets.length; r++) {
                 targets[r].style.backgroundColor = 'red';
