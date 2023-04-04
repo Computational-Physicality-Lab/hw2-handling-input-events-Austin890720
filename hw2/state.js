@@ -240,7 +240,7 @@ export class Touch{
         this.offsetY[i] = parseInt(nowTarget.style.top);
         nowTarget.addEventListener('mousemove', this.onTouchMove);
     }
-    onTouchEnd(event) {
+    onTouchClick(event) {
         event.stopPropagation();
         var now = new Date().getTime();
         console.log("touch end", now, this.lastTouchTime);
