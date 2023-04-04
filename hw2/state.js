@@ -228,7 +228,7 @@ export class Touch{
     onTouchStart(i,event) {
         event.stopPropagation();
         console.log("touch start");
-        this.targetNumber = i;
+        
         var nowTarget = document.getElementsByClassName("target")[this.targetNumber];
         this.isDown = true;
         this.touchMode = true;
@@ -239,6 +239,10 @@ export class Touch{
         this.offsetX[i] = parseInt(nowTarget.style.left);
         this.offsetY[i] = parseInt(nowTarget.style.top);
         nowTarget.addEventListener('mousemove', this.onTouchMove);
+        if (this.targetNumber != i & this.touchFollowMode == true){
+            this.touchFollowMode = false;
+        }
+        this.targetNumber = i;
     }
     onTouchClick(event) {
         event.stopPropagation();
