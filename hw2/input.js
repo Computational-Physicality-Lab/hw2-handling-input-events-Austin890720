@@ -19,7 +19,7 @@ workspace.addEventListener('click', Target.onClickOutside.bind(Target));
 
 workspace.addEventListener('touchstart', TouchMode.onTouchStartOutside.bind(TouchMode));
 workspace.addEventListener('touchmove', TouchMode.onDragOutside.bind(TouchMode));
-workspace.addEventListener('touchend', TouchMode.onTouchEnd.bind(TouchMode));
+workspace.addEventListener('click', TouchMode.onTouchEndOutside.bind(TouchMode));
 
 for(let i=0;i<targets.length;i++){
     targets[i].addEventListener('mousedown', Target.onMouseDown.bind(Target, i));

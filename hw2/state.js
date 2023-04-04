@@ -36,6 +36,8 @@ export class Context {
             this.followMode = false;
             console.log("cancel followMode",this.followMode,this.state);
         }
+
+        
         
     }
     onMouseDown(i,event) {
@@ -293,5 +295,10 @@ export class Touch{
 
         }
         
+    }
+    onTouchEndOutside(event){
+        if (this.touchFollowMode == true){
+            this.touchFollowMode = false;
+        }
     }
 }
