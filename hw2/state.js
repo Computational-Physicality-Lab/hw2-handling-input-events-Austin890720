@@ -238,12 +238,13 @@ export class Touch{
         this.initY[i] = nowTarget.style.top;
         this.offsetX[i] = parseInt(nowTarget.style.left);
         this.offsetY[i] = parseInt(nowTarget.style.top);
-        nowTarget.addEventListener('mousemove', this.onTouchMove);
+        
         // if (this.targetNumber != i & this.touchFollowMode == true){
         //     this.touchFollowMode = false;
         //     console.log('stop follow!!!!!!!!')
         // }
         this.targetNumber = i;
+        nowTarget.addEventListener('mousemove', this.onTouchMove);
     }
     onTouchClick(event) {
         event.stopPropagation();
