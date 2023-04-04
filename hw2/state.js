@@ -48,9 +48,9 @@ export class Context {
         this.initY[i] = nowTarget.style.top;
         this.offsetX[i] = parseInt(nowTarget.style.left);
         this.offsetY[i] = parseInt(nowTarget.style.top);
-        if (this.move == true){
-            nowTarget.addEventListener('mousemove', this.onMouseMove);
-        }
+        // if (this.move == true){
+        //     nowTarget.addEventListener('mousemove', this.onMouseMove);
+        // }
         
       }
     onMouseUp(event) {
