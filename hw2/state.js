@@ -241,6 +241,7 @@ export class Touch{
         nowTarget.addEventListener('mousemove', this.onTouchMove);
         if (this.targetNumber != i & this.touchFollowMode == true){
             this.touchFollowMode = false;
+            console.log('stop follow!!!!!!!!')
         }
         this.targetNumber = i;
     }
