@@ -278,7 +278,7 @@ export class Touch{
             this.isMoving = true;
             nowTarget.style.left = (event.clientX - nowTarget.offsetWidth/2) + 'px';
             nowTarget.style.top = (event.clientY - nowTarget.offsetHeight/2) + 'px';
-            nowTarget.addEventListener('mousemove', this.onDragOutside);
+            nowTarget.addEventListener('touchmove', this.onDragOutside);
 
         }
 

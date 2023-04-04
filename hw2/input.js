@@ -24,7 +24,7 @@ workspace.addEventListener('touchend', TouchMode.onTouchEnd.bind(TouchMode));
 for(let i=0;i<targets.length;i++){
     targets[i].addEventListener('mousedown', Target.onMouseDown.bind(Target, i));
     targets[i].addEventListener('mouseup', Target.onMouseUp.bind(Target));
-    targets[i].addEventListener('click', Target.onClick.bind(Target,i));
+    // targets[i].addEventListener('click', Target.onClick.bind(Target,i));
     targets[i].addEventListener('mousemove', Target.onMouseMove.bind(Target));
     targets[i].addEventListener('dblclick', Target.onDoubleClick.bind(Target, i));
 
