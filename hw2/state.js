@@ -275,6 +275,7 @@ export class Touch{
     }
     onTouchStartOutside(event){
         event.stopPropagation();
+        console.log("click outside start");
         if (this.followMode == true){
             var nowTarget = document.getElementsByClassName("target")[this.targetNumber];
             this.isMoving = true;
