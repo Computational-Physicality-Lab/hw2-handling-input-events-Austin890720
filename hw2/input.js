@@ -7,18 +7,19 @@ You will certainly need a large number of global variables to keep track of the 
 of the interaction.
 */
 
-import { Context } from './state.js';
+import { Context , Touch} from './state.js';
 
 let targets = document.querySelectorAll('.target');
 const Target = new Context();
+const TouchMode = new Touch();
 // document.addEventListener('click', Target.onClickOutside.bind())
 
 const workspace = document.querySelector('#workspace');
 workspace.addEventListener('click', Target.onClickOutside.bind(Target));
 
-workspace.addEventListener('touchstart', Target.onTouchStartOutside.bind(Target));
-workspace.addEventListener('touchmove', Target.onDragOutside.bind(Target));
-workspace.addEventListener('touchend', Target.onTouchEnd.bind(Target));
+workspace.addEventListener('touchstart', TouchMode.onTouchStartOutside.bind(TouchMode));
+workspace.addEventListener('touchmove', TouchMode.onDragOutside.bind(TouchMode));
+workspace.addEventListener('touchend', TouchMode.onTouchEnd.bind(TouchMode));
 
 for(let i=0;i<targets.length;i++){
     targets[i].addEventListener('mousedown', Target.onMouseDown.bind(Target, i));
@@ -27,9 +28,9 @@ for(let i=0;i<targets.length;i++){
     targets[i].addEventListener('mousemove', Target.onMouseMove.bind(Target));
     targets[i].addEventListener('dblclick', Target.onDoubleClick.bind(Target, i));
 
-    targets[i].addEventListener("touchstart", Target.onTouchStart.bind(Target,i));
-    targets[i].addEventListener("touchmove", Target.onTouchMove.bind(Target));
-    targets[i].addEventListener("touchend", Target.onTouchEnd.bind(Target));
+    targets[i].addEventListener("touchstart", TouchMode.onTouchStart.bind(TouchMode,i));
+    targets[i].addEventListener("touchmove", TouchMode.onTouchMove.bind(TouchMode));
+    targets[i].addEventListener("touchend", TouchMode.onTouchEnd.bind(TouchMode));
 
 }
 document.addEventListener("keydown", Target.onESC.bind(Target));
