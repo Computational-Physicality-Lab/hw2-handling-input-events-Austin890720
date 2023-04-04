@@ -21,7 +21,7 @@ export class Context {
     }
     onClick(i){
         event.stopPropagation();
-        console.log('click');
+        console.log('click',this.state,this.move);
         this.state = 'click';
         let targets = document.querySelectorAll('.target');
         if (this.state == 'click' & this.move == false){
