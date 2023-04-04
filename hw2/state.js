@@ -48,7 +48,10 @@ export class Context {
         this.initY[i] = nowTarget.style.top;
         this.offsetX[i] = parseInt(nowTarget.style.left);
         this.offsetY[i] = parseInt(nowTarget.style.top);
-        nowTarget.addEventListener('mousemove', this.onMouseMove);
+        if (this.move == true){
+            nowTarget.addEventListener('mousemove', this.onMouseMove);
+        }
+        
       }
     onMouseUp(event) {
         event.stopPropagation();
@@ -68,6 +71,8 @@ export class Context {
         this.move = true;
         var nowTarget = document.getElementsByClassName("target")[this.targetNumber];
         if (this.isDown) {
+            
+            
             const dx = event.pageX - this.startX[this.targetNumber];
             const dy = event.pageY - this.startY[this.targetNumber];
             nowTarget.style.top =  this.offsetY[this.targetNumber]+dy + "px";
