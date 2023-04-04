@@ -298,7 +298,9 @@ export class Touch{
     }
     onTouchEndOutside(event){
         if (this.touchFollowMode == true){
+            console.log("stop follow")
             this.touchFollowMode = false;
+            this.isMoving = false;
         }
     }
 }
