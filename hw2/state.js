@@ -228,7 +228,7 @@ export class Touch{
     onTouchStart(i,event) {
         event.stopPropagation();
         console.log("touch start");
-        
+        this.targetNumber = i;
         var nowTarget = document.getElementsByClassName("target")[this.targetNumber];
         this.isDown = true;
         this.touchMode = true;
@@ -243,7 +243,7 @@ export class Touch{
         //     this.touchFollowMode = false;
         //     console.log('stop follow!!!!!!!!')
         // }
-        this.targetNumber = i;
+        
         nowTarget.addEventListener('mousemove', this.onTouchMove);
     }
     onTouchClick(event) {
