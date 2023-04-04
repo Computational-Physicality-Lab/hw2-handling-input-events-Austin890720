@@ -167,7 +167,7 @@ export class Context {
     }
     onTouchEnd(event) {
         var now = new Date().getTime();
-        console.log("touch end");
+        console.log("touch end", now, this.lastTouchTime);
         if (now - lastTouchTime <= 500) {
             var nowTarget = document.getElementsByClassName("target")[this.targetNumber];
             nowTarget.style.backgroundColor = 'green'
