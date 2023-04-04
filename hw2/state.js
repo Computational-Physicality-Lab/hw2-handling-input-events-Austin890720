@@ -52,7 +52,7 @@ export class Context {
       }
     onMouseUp(event) {
         event.stopPropagation();
-        console.log("mouse up")
+        console.log("mouse up", this.isDown);
         var nowTarget = document.getElementsByClassName("target")[this.targetNumber];
         if (this.isDown) {
             this.initX[this.targetNumber] = nowTarget.style.left;
@@ -162,10 +162,12 @@ export class Context {
     }
     onTouchEnd(event) {
         var now = new Date().getTime();
+        console.log("touch end");
         if (now - lastTouchTime <= 500) {
             var nowTarget = document.getElementsByClassName("target")[this.targetNumber];
             nowTarget.style.backgroundColor = 'green'
             this.followMode = true;
+            console.log("double touch");
         }
         this.lastTouchTime = now;
     }
