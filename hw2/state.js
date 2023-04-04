@@ -64,6 +64,7 @@ export class Context {
     }
     onMouseMove(event) {
         event.stopPropagation();
+        console.log("mouse move");
         this.move = true;
         var nowTarget = document.getElementsByClassName("target")[this.targetNumber];
         if (this.isDown) {
