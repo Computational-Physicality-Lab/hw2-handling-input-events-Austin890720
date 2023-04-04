@@ -288,8 +288,8 @@ export class Touch{
         if (this.isMoving == true){
             console.log("draging~~~", event.pageX, event.pageY, event.clientX,event.clientY);
             var nowTarget = document.getElementsByClassName("target")[this.targetNumber];
-            nowTarget.style.left = (event.clientX - nowTarget.offsetWidth/2) + 'px';
-            nowTarget.style.top = (event.clientY - nowTarget.offsetHeight/2) + 'px';
+            nowTarget.style.left = (event.pageX - nowTarget.offsetWidth/2) + 'px';
+            nowTarget.style.top = (event.pageY - nowTarget.offsetHeight/2) + 'px';
 
         }
         
