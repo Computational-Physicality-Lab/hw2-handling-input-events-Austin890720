@@ -286,7 +286,7 @@ export class Touch{
     }
     onDragOutside(event){
         if (this.isMoving == true){
-            console.log("draging~~~");
+            console.log("draging~~~", event.pageX, event.pageY);
             var nowTarget = document.getElementsByClassName("target")[this.targetNumber];
             nowTarget.style.left = (event.clientX - nowTarget.offsetWidth/2) + 'px';
             nowTarget.style.top = (event.clientY - nowTarget.offsetHeight/2) + 'px';
