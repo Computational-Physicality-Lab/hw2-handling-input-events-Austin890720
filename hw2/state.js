@@ -18,6 +18,7 @@ export class Context {
       this.followMode = false;
       this.isMoving = false;
       this.lastTouchTime = 0;
+      this.touchMode = false;
     }
     onClick(i){
         event.stopPropagation();
@@ -69,13 +70,15 @@ export class Context {
     onMouseMove(event) {
         event.stopPropagation();
         console.log("mouse move");
-        this.move = true;
+        
         var nowTarget = document.getElementsByClassName("target")[this.targetNumber];
-        if (this.isDown) {
+        if (this.isDown & this.touchMode == false) {
+            this.move = true;
             const dx = event.pageX - this.startX[this.targetNumber];
             const dy = event.pageY - this.startY[this.targetNumber];
             nowTarget.style.top =  this.offsetY[this.targetNumber]+dy + "px";
             nowTarget.style.left =  this.offsetX[this.targetNumber]+dx + "px";
+            console.log(nowTarget.style.top, nowTarget.style.left)
             // nowTarget.style.transform = `translate(${this.offsetX[this.targetNumber] + dx}px,${this.offsetY[this.targetNumber] + dy}px)`;
             
         }else if (this.isMoving == true & this.followMode == true){
@@ -159,6 +162,7 @@ export class Context {
         this.targetNumber = i;
         var nowTarget = document.getElementsByClassName("target")[this.targetNumber];
         this.isDown = true;
+        this.touchMode = true;
         this.startX[i] = event.pageX;
         this.startY[i] = event.pageY;
         this.initX[i] = nowTarget.style.left;
