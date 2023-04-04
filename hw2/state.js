@@ -166,6 +166,7 @@ export class Context {
         nowTarget.addEventListener('mousemove', this.onTouchMove);
     }
     onTouchEnd(event) {
+        event.stopPropagation();
         var now = new Date().getTime();
         console.log("touch end", now, this.lastTouchTime);
         if (now - this.lastTouchTime <= 500) {
