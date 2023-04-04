@@ -55,12 +55,13 @@ export class Context {
       }
     onMouseUp(event) {
         event.stopPropagation();
-        console.log("mouse up", this.isDown);
+        
         var nowTarget = document.getElementsByClassName("target")[this.targetNumber];
         if (this.isDown) {
             this.initX[this.targetNumber] = nowTarget.style.left;
             this.initY[this.targetNumber] = nowTarget.style.top;
         }
+        console.log("mouse up", this.isDown,nowTarget.style.left,nowTarget.style.top);
         this.isDown = false;
         this.isMoving = false;
         nowTarget.removeEventListener('mousemove', this.onMouseMove);
@@ -154,6 +155,7 @@ export class Context {
     }
     onTouchStart(i,event) {
         event.stopPropagation();
+        console.log("touch start");
         this.targetNumber = i;
         var nowTarget = document.getElementsByClassName("target")[this.targetNumber];
         this.isDown = true;
