@@ -161,22 +161,13 @@ export class Context {
         nowTarget.addEventListener('mousemove', this.onTouchMove);
     }
     onTouchEnd(event) {
-        event.stopPropagation();
         var now = new Date().getTime();
-        // if (now - lastTouchTime <= 500) {
-        //     var nowTarget = document.getElementsByClassName("target")[this.targetNumber];
-        //     nowTarget.style.backgroundColor = 'green'
-        //     this.followMode = true;
-        // }
-        // this.lastTouchTime = now;
-        var nowTarget = document.getElementsByClassName("target")[this.targetNumber];
-        if (this.isDown) {
-            this.initX[this.targetNumber] = nowTarget.style.left;
-            this.initY[this.targetNumber] = nowTarget.style.top;
+        if (now - lastTouchTime <= 500) {
+            var nowTarget = document.getElementsByClassName("target")[this.targetNumber];
+            nowTarget.style.backgroundColor = 'green'
+            this.followMode = true;
         }
-        this.isDown = false;
-        this.isMoving = false;
-        nowTarget.removeEventListener('mousemove', this.onTouchMove);
+        this.lastTouchTime = now;
     }
     onTouchMove(event) {
         event.stopPropagation();
