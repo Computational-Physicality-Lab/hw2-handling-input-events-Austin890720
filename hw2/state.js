@@ -221,6 +221,7 @@ export class Touch{
       this.isMoving = false;
       this.lastTouchTime = 0;
       this.touchMode = false;
+      this.touchFollowMode = false;
     }
     onTouchStart(i,event) {
         event.stopPropagation();
@@ -244,7 +245,7 @@ export class Touch{
         if (now - this.lastTouchTime <= 500) {
             var nowTarget = document.getElementsByClassName("target")[this.targetNumber];
             nowTarget.style.backgroundColor = 'green'
-            this.followMode = true;
+            this.touchFollowMode = true;
             console.log("double touch");
         }
         this.lastTouchTime = now;
@@ -272,7 +273,7 @@ export class Touch{
     onTouchStartOutside(event){
         event.stopPropagation();
         
-        if (this.followMode == true){
+        if (this.touchFollowMode == true){
             console.log("click outside start");
             var nowTarget = document.getElementsByClassName("target")[this.targetNumber];
             this.isMoving = true;
