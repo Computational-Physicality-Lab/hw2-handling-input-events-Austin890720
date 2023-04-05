@@ -195,7 +195,7 @@ export class Touch{
         console.log("touch end", now, this.lastTouchTime);
         if (now - this.lastTouchTime <= 500) {
             var nowTarget = document.getElementsByClassName("target")[this.targetNumber];
-            nowTarget.style.backgroundColor = 'green'
+            // nowTarget.style.backgroundColor = 'green'
             this.touchFollowMode = true;
             console.log("double touch");
         }
