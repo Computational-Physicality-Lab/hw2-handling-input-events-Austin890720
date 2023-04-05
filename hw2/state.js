@@ -219,7 +219,7 @@ export class Touch{
             nowTarget.style.top = (event.clientY - nowTarget.offsetHeight/2) + 'px';
         }else if (event.touches.length === 2){
             this.biggerDistance = Math.abs(event.touches[0].clientX - event.touches[1].clientX)
-            if (this.biggerDistance - this.startDistance > 0){
+            if (this.divStartWidth + this.biggerDistance - this.startDistance > 50){
                 nowTarget.style.width = (this.divStartWidth + this.biggerDistance - this.startDistance) + 'px';
                 nowTarget.style.left = (this.divStartX - (this.biggerDistance - this.startDistance)/2) + 'px';
                 console.log(nowTarget.style.width, nowTarget.style.left);
