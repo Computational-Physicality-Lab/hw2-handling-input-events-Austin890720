@@ -31,6 +31,8 @@ for(let i=0;i<targets.length;i++){
     targets[i].addEventListener("touchstart", TouchMode.onTouchStart.bind(TouchMode,i));
     targets[i].addEventListener("touchmove", TouchMode.onTouchMove.bind(TouchMode));
     targets[i].addEventListener("click", TouchMode.onTouchClick.bind(TouchMode));
+    targets[i].addEventListener("tochend", TouchMode.onTouchEnd.bind(TouchMode));
+    
 
 }
 document.addEventListener("keydown", Target.onESC.bind(Target));

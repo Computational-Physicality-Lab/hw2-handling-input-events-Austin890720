@@ -224,10 +224,14 @@ export class Touch{
       this.lastTouchTime = 0;
       this.touchMode = false;
       this.touchFollowMode = false;
+      this.touchStartX = 0;
+      this.currentX = 0;
+      this.startDistance = 0;
+      this.lastScale = 1;
     }
     onTouchStart(i,event) {
         event.stopPropagation();
-        console.log("touch start");
+        console.log("touch start", Math.abs(-1));
         
         var nowTarget = document.getElementsByClassName("target")[i];
         this.isDown = true;
@@ -245,7 +249,16 @@ export class Touch{
             console.log('stop follow!!!!!!!!')
         }
         this.targetNumber = i;
-        nowTarget.addEventListener('mousemove', this.onTouchMove);
+        if (event.touches.length === 1){
+            nowTarget.addEventListener('mousemove', this.onTouchMove);
+        }else if (event.touches.length === 2) {
+            this.touchStartX = (event.touches[0].clientX + event.touches[1].clientX) / 2;
+            this.currentX = this.touchStartX;
+            this.startDistance = Math.abs(event.touches[0].clientX - event.touches[1].clientX);
+            this.currentDistance = this.startDistance;
+            this.lastScale = 1;
+            event.preventDefault();
+          }
     }
     onTouchClick(event) {
         event.stopPropagation();
@@ -262,19 +275,30 @@ export class Touch{
     onTouchMove(event) {
         event.stopPropagation();
         this.move = true;
+        console.log(event.touches.length)
         var nowTarget = document.getElementsByClassName("target")[this.targetNumber];
-        if (this.isDown) {
+        if (this.isDown & event.touches.length === 1) {
             const dx = event.pageX - this.startX[this.targetNumber];
             const dy = event.pageY - this.startY[this.targetNumber];
             nowTarget.style.top =  this.offsetY[this.targetNumber]+dy + "px";
             nowTarget.style.left =  this.offsetX[this.targetNumber]+dx + "px";
             // nowTarget.style.transform = `translate(${this.offsetX[this.targetNumber] + dx}px,${this.offsetY[this.targetNumber] + dy}px)`;
             
-        }else if (this.isMoving == true & this.followMode == true){
+        }else if (this.isMoving == true & this.followMode == true & event.touches.length === 1){
             console.log(nowTarget.style.left,nowTarget.style.top);
             var nowTarget = document.getElementsByClassName("target")[this.targetNumber];
             nowTarget.style.left = (event.clientX - nowTarget.offsetWidth/2) + 'px';
             nowTarget.style.top = (event.clientY - nowTarget.offsetHeight/2) + 'px';
+        }else if (event.touches.length === 2){
+            this.currentX = (event.touches[0].clientX + event.touches[1].clientX) / 2;
+            this.currentDistance = Math.abs(event.touches[0].clientX - event.touches[1].clientX);
+            
+            var scale = this.currentDistance / this.startDistance;
+            var offset = (this.currentX - this.touchStartX) * (1 - scale) / 2;
+            nowTarget.style.width = (myDiv.offsetWidth * scale) + 'px';
+            mynowTargetDiv.style.transform = 'translateX(' + offset + 'px)';
+            this.lastScale = scale;
+            event.preventDefault();
         }else{
             this.move = false;
         }
@@ -308,6 +332,14 @@ export class Touch{
             console.log("stop follow")
             this.touchFollowMode = false;
             this.isMoving = false;
+        }
+    }
+    onTouchEnd(event){
+        if (event.touches.length === 0) {
+            var nowTarget = document.getElementsByClassName("target")[this.targetNumber];
+            var finalOffset = (this.currentX - this.touchStartX) * (1 - this.lastScale) / 2;
+            
+            nowTarget.style.transform = 'translateX(' + finalOffset + 'px)';
         }
     }
 }
