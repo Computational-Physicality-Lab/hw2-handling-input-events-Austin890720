@@ -203,7 +203,6 @@ export class Touch{
     onTouchMove(event) {
         event.stopPropagation();
         this.move = true;
-        console.log(event.touches.length)
         var nowTarget = document.getElementsByClassName("target")[this.targetNumber];
         if (this.isDown & event.touches.length === 1) {
             const dx = event.pageX - this.startX[this.targetNumber];
@@ -224,6 +223,7 @@ export class Touch{
             var scale = this.currentDistance / this.startDistance;
             var offset = (this.currentX - this.touchStartX) * (1 - scale) / 2;
             nowTarget.style.width = (nowTarget.offsetWidth * scale) + 'px';
+            console.log(nowTarget.style.width);
             // mynowTargetDiv.style.transform = 'translateX(' + offset + 'px)';
             this.lastScale = scale;
             event.preventDefault();
