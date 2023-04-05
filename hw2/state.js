@@ -202,7 +202,7 @@ export class Touch{
         }
         this.lastTouchTime = now;
     }
-    onTouchMove(event) {
+    onTouchMove(i,event) {
         event.stopPropagation();
         this.move = true;
         var nowTarget = document.getElementsByClassName("target")[this.targetNumber];
@@ -218,7 +218,7 @@ export class Touch{
             var nowTarget = document.getElementsByClassName("target")[this.targetNumber];
             nowTarget.style.left = (event.clientX - nowTarget.offsetWidth/2) + 'px';
             nowTarget.style.top = (event.clientY - nowTarget.offsetHeight/2) + 'px';
-        }else if (event.touches.length === 2 ){
+        }else if (event.touches.length === 2 & this.targetNumber == i){
             this.biggerDistance = Math.abs(event.touches[0].clientX - event.touches[1].clientX)
             if (this.divStartWidth + this.biggerDistance - this.startDistance > 50){
                 nowTarget.style.width = (this.divStartWidth + this.biggerDistance - this.startDistance) + 'px';

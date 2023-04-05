@@ -29,7 +29,7 @@ for(let i=0;i<targets.length;i++){
     targets[i].addEventListener('dblclick', Target.onDoubleClick.bind(Target, i));
 
     targets[i].addEventListener("touchstart", TouchMode.onTouchStart.bind(TouchMode,i));
-    targets[i].addEventListener("touchmove", TouchMode.onTouchMove.bind(TouchMode));
+    targets[i].addEventListener("touchmove", TouchMode.onTouchMove.bind(TouchMode,i));
     targets[i].addEventListener("click", TouchMode.onTouchClick.bind(TouchMode));
     targets[i].addEventListener("tochend", TouchMode.onTouchEnd.bind(TouchMode));
     
