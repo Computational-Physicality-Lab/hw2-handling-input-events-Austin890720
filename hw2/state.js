@@ -295,7 +295,7 @@ export class Touch{
             
             var scale = this.currentDistance / this.startDistance;
             var offset = (this.currentX - this.touchStartX) * (1 - scale) / 2;
-            nowTarget.style.width = (myDiv.offsetWidth * scale) + 'px';
+            nowTarget.style.width = (nowTarget.offsetWidth * scale) + 'px';
             mynowTargetDiv.style.transform = 'translateX(' + offset + 'px)';
             this.lastScale = scale;
             event.preventDefault();
