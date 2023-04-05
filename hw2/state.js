@@ -136,6 +136,8 @@ export class Context {
 }
 export class Touch{
     targetNumber;
+    divStartX;
+    divStartWidth;
 
     constructor() {
       this.state = "idle";
@@ -156,6 +158,7 @@ export class Touch{
       this.currentX = 0;
       this.startDistance = 0;
       this.lastScale = 1;
+      
     }
     onTouchStart(i,event) {
         event.stopPropagation();
@@ -185,6 +188,8 @@ export class Touch{
             this.startDistance = Math.abs(event.touches[0].clientX - event.touches[1].clientX);
             this.currentDistance = this.startDistance;
             this.lastScale = 1;
+            this.divStartX = parseInt(nowTarget.style.left);
+            this.divStartWidth = parseInt(nowTarget.style.width);
             event.preventDefault();
           }
     }
@@ -222,9 +227,12 @@ export class Touch{
             
             var scale = this.currentDistance / this.startDistance;
             var offset = (this.currentX - this.touchStartX) * (1 - scale) / 2;
-            nowTarget.style.width = (nowTarget.offsetWidth * scale) + 'px';
-            console.log(nowTarget.style.width);
-            // mynowTargetDiv.style.transform = 'translateX(' + offset + 'px)';
+            if (this.currentX - this.touchStartX > 0){
+                nowTarget.style.width = (this.divStartWidth + this.currentX - this.touchStartX) + 'px';
+                nowTarget.style.left = (this.divStartX - (this.currentX - this.touchStartX)/2) + 'px';
+                console.log(nowTarget.style.width);
+                // mynowTargetDiv.style.transform = 'translateX(' + offset + 'px)';
+            }
             this.lastScale = scale;
             event.preventDefault();
         }else{
