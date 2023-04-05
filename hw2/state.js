@@ -241,6 +241,7 @@ export class Touch{
         
         if (this.targetNumber != i & this.touchFollowMode == true){
             this.touchFollowMode = false;
+            this.isMoving = false;
             console.log('stop follow!!!!!!!!')
         }
         this.targetNumber = i;
