@@ -154,10 +154,8 @@ export class Touch{
       this.lastTouchTime = 0;
       this.touchMode = false;
       this.touchFollowMode = false;
-      this.touchStartX = 0;
-      this.currentX = 0;
       this.startDistance = 0;
-      this.lastScale = 1;
+      this.biggerDistance = 0;
       
     }
     onTouchStart(i,event) {
@@ -183,11 +181,9 @@ export class Touch{
         if (event.touches.length === 1){
             nowTarget.addEventListener('mousemove', this.onTouchMove);
         }else if (event.touches.length === 2) {
-            this.touchStartX = (event.touches[0].clientX + event.touches[1].clientX) / 2;
-            this.currentX = this.touchStartX;
             this.startDistance = Math.abs(event.touches[0].clientX - event.touches[1].clientX);
-            this.currentDistance = this.startDistance;
-            this.lastScale = 1;
+            // this.currentDistance = this.startDistance;
+            // this.lastScale = 1;
             this.divStartX = parseInt(nowTarget.style.left);
             this.divStartWidth = parseInt(nowTarget.style.width);
             event.preventDefault();
@@ -222,18 +218,14 @@ export class Touch{
             nowTarget.style.left = (event.clientX - nowTarget.offsetWidth/2) + 'px';
             nowTarget.style.top = (event.clientY - nowTarget.offsetHeight/2) + 'px';
         }else if (event.touches.length === 2){
-            this.currentX = (event.touches[0].clientX + event.touches[1].clientX) / 2;
-            this.currentDistance = Math.abs(event.touches[0].clientX - event.touches[1].clientX);
-            
-            var scale = this.currentDistance / this.startDistance;
-            var offset = (this.currentX - this.touchStartX) * (1 - scale) / 2;
-            if (this.currentX - this.touchStartX > 0){
-                nowTarget.style.width = (this.divStartWidth + this.currentX - this.touchStartX) + 'px';
-                nowTarget.style.left = (this.divStartX - (this.currentX - this.touchStartX)/2) + 'px';
-                console.log(nowTarget.style.width);
+            this.biggerDistance = Math.abs(event.touches[0].clientX - event.touches[1].clientX)
+            if (this.biggerDistance - this.startDistance > 0){
+                nowTarget.style.width = (this.divStartWidth + this.biggerDistance - this.startDistance) + 'px';
+                nowTarget.style.left = (this.divStartX - (this.biggerDistance - this.startDistance)/2) + 'px';
+                console.log(nowTarget.style.width, nowTarget.style.left);
                 // mynowTargetDiv.style.transform = 'translateX(' + offset + 'px)';
             }
-            this.lastScale = scale;
+            
             event.preventDefault();
         }else{
             this.move = false;
