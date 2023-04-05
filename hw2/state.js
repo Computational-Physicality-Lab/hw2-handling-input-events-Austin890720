@@ -177,10 +177,10 @@ export class Touch{
             this.isMoving = false;
             console.log('stop follow!!!!!!!!')
         }
-        this.targetNumber = i;
+        
         if (event.touches.length === 1){
             nowTarget.addEventListener('mousemove', this.onTouchMove);
-        }else if (event.touches.length === 2) {
+        }else if (event.touches.length === 2 & this.targetNumber == i) {
             this.startDistance = Math.abs(event.touches[0].clientX - event.touches[1].clientX);
             // this.currentDistance = this.startDistance;
             // this.lastScale = 1;
@@ -188,6 +188,7 @@ export class Touch{
             this.divStartWidth = parseInt(nowTarget.style.width);
             event.preventDefault();
           }
+        this.targetNumber = i;
     }
     onTouchClick(event) {
         event.stopPropagation();
@@ -217,7 +218,7 @@ export class Touch{
             var nowTarget = document.getElementsByClassName("target")[this.targetNumber];
             nowTarget.style.left = (event.clientX - nowTarget.offsetWidth/2) + 'px';
             nowTarget.style.top = (event.clientY - nowTarget.offsetHeight/2) + 'px';
-        }else if (event.touches.length === 2 & this.targetNumber == i){
+        }else if (event.touches.length === 2 ){
             this.biggerDistance = Math.abs(event.touches[0].clientX - event.touches[1].clientX)
             if (this.divStartWidth + this.biggerDistance - this.startDistance > 50){
                 nowTarget.style.width = (this.divStartWidth + this.biggerDistance - this.startDistance) + 'px';
