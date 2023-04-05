@@ -180,7 +180,7 @@ export class Touch{
         
         if (event.touches.length === 1){
             nowTarget.addEventListener('mousemove', this.onTouchMove);
-        }else if (event.touches.length === 2 ) {
+        }else if (event.touches.length === 2 & this.targetNumber == i) {
             this.startDistance = Math.abs(event.touches[0].clientX - event.touches[1].clientX);
             // this.currentDistance = this.startDistance;
             // this.lastScale = 1;
@@ -202,7 +202,7 @@ export class Touch{
         }
         this.lastTouchTime = now;
     }
-    onTouchMove(i, event) {
+    onTouchMove(event) {
         event.stopPropagation();
         this.move = true;
         var nowTarget = document.getElementsByClassName("target")[this.targetNumber];
