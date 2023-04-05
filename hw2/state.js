@@ -180,7 +180,7 @@ export class Touch{
         
         if (event.touches.length === 1){
             nowTarget.addEventListener('mousemove', this.onTouchMove);
-        }else if (event.touches.length === 2 & this.targetNumber == i) {
+        }else if (event.touches.length === 2 ) {
             this.startDistance = Math.abs(event.touches[0].clientX - event.touches[1].clientX);
             // this.currentDistance = this.startDistance;
             // this.lastScale = 1;
